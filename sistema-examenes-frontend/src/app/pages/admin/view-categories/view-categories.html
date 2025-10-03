@@ -1,0 +1,58 @@
+
+<div class="categories-container">
+  <mat-card class="categories-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>category</mat-icon>
+        Gestión de Categorías
+      </mat-card-title>
+      <mat-card-subtitle>Administre todas las categorías del sistema</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="categories-section">
+        
+        
+        <div class="table-container" *ngIf="categorias && categorias.length > 0">
+          <div class="categories-list">
+            <div class="category-item" *ngFor="let c of categorias; trackBy: trackByFn">
+              <div class="category-info">
+                <div class="category-header">
+                  <mat-icon class="category-icon">category</mat-icon>
+                  <div class="category-details">
+                    <h4 class="category-title">{{ c.title }}</h4>
+                    <p class="category-description">{{ c.description }}</p>
+                  </div>
+                </div>
+                <div class="category-actions">
+                  <button mat-icon-button color="primary" matTooltip="Editar categoría">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" matTooltip="Eliminar categoría" (click)="deleteCategory(c.id)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="no-categories" *ngIf="!categorias || categorias.length === 0">
+          <mat-icon class="no-categories-icon">info</mat-icon>
+          <h3>No hay categorías disponibles</h3>
+          <p>Comience agregando su primera categoría al sistema</p>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end" class="action-buttons">
+      
+      <button routerLink="/admin/AddCategory" mat-raised-button color="primary">
+        <mat-icon>add</mat-icon>
+        Agregar Categoría
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+ 

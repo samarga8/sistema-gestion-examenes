@@ -1,0 +1,57 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    
+
+    <mat-card-content>
+      <div class="login-image-section">
+        <img src="assets/login_image.webp" alt="Login" class="login-image">
+      </div>
+
+      <form (ngSubmit)="formSubmit()" class="login-form">
+        <div class="form-section">
+          <h3 class="form-title">
+            <mat-icon>account_circle</mat-icon>
+            Credenciales de Acceso
+          </h3>
+
+          <div class="form-fields">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre de usuario</mat-label>
+              <input 
+                [(ngModel)]="loginData.username" 
+                name="username" 
+                required 
+                matInput 
+                type="text" 
+                placeholder="Ingrese su nombre de usuario"
+                autocomplete="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-hint>Ingrese su nombre de usuario registrado</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input 
+                [(ngModel)]="loginData.password" 
+                name="password" 
+                required 
+                matInput 
+                type="password" 
+                placeholder="Ingrese su contraseña"
+                autocomplete="current-password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint>Ingrese su contraseña segura</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-card-actions class="login-actions">
+          <button type="submit" mat-raised-button color="primary" class="login-button">
+            <mat-icon>login</mat-icon>
+            Iniciar Sesión
+          </button>
+        </mat-card-actions>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

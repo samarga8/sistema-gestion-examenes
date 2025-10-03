@@ -1,0 +1,90 @@
+<div class="exams-container">
+  <mat-card class="exams-card">
+    <mat-card-header class="card-header">
+      <mat-card-title class="main-title">
+        <mat-icon class="title-icon">quiz</mat-icon>
+        Gestión de Exámenes
+      </mat-card-title>
+      <mat-card-subtitle class="main-subtitle">
+        Administra y visualiza todos los exámenes del sistema
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content class="card-content">
+      <div class="exams-section">
+        <div class="section-title">
+          <mat-icon class="section-icon">assessment</mat-icon>
+          <span>Exámenes Disponibles</span>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div class="exams-list" *ngIf="exams.length > 0">
+          <mat-card class="exam-item" *ngFor="let e of exams">
+            <mat-card-header class="exam-header">
+              <div mat-card-avatar class="exam-avatar">
+                <mat-icon>quiz</mat-icon>
+              </div>
+              <mat-card-title class="exam-title">{{ e.title }}</mat-card-title>
+              <mat-card-subtitle class="exam-category">
+                <mat-icon class="category-icon">description</mat-icon>
+                {{ e.description }}
+              </mat-card-subtitle>
+            </mat-card-header>
+            
+            <mat-card-content class="exam-content">
+              <div class="exam-stats">
+                <div class="stat-item">
+                  <mat-icon>star</mat-icon>
+                  <span>{{ e.pointMax }} puntos máximos</span>
+                </div>
+                <div class="stat-item">
+                  <mat-icon >help_outline</mat-icon>
+                  <span>{{ e.numberQuestions }} preguntas</span>
+                     <mat-icon>help_outline</mat-icon>
+                    Preguntas
+      
+                                   <span>{{ e.numberQuestions }} preguntas</span>
+                </div>
+              </div>
+            </mat-card-content>
+
+            <mat-card-actions class="exam-actions">
+              <button [routerLink]="'/admin/questions/' + e.examId + '/' + e.title" mat-raised-button color="primary" class="action-btn">
+                <mat-icon>help_outline</mat-icon>
+                Preguntas
+              </button>
+              <button [routerLink]="'/admin/exam/' + e.examId" mat-raised-button color="primary" class="action-btn">
+                <mat-icon>edit</mat-icon>
+                Actualizar
+              </button>
+              <button mat-raised-button color="primary" class="action-btn">
+                <mat-icon>assignment</mat-icon>
+                Intentos
+              </button>
+              <button mat-flat-button color="warn" class="action-btn delete-btn" (click)="deleteExam(e.examId)">
+                <mat-icon>delete</mat-icon>
+                Eliminar
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+
+        <!-- Estado vacío -->
+        <div class="empty-state" *ngIf="exams.length === 0">
+          <mat-icon class="empty-icon">quiz</mat-icon>
+          <h3>No hay exámenes disponibles</h3>
+          <p>Comienza creando tu primer examen para el sistema</p>
+        </div>
+      </div>
+
+     
+      <div class="action-buttons">
+      
+        <button routerLink="/admin/add-exam" mat-raised-button color="primary" class="add-btn">
+          <mat-icon>add</mat-icon>
+          Agregar Examen
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

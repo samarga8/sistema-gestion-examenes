@@ -1,0 +1,56 @@
+<div class="category-container">
+  <mat-card class="category-card">
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>add_circle</mat-icon>
+        Agregar Nueva Categoría
+      </mat-card-title>
+      <mat-card-subtitle>Complete la información para crear una nueva categoría</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="category-section">
+        <h3 class="section-title">
+          <mat-icon>category</mat-icon>
+          Información de la Categoría
+        </h3>
+        
+        <div class="form-container">
+          <form class="category-form" (ngSubmit)="saveCategory()">
+            <div class="form-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <input matInput 
+                       [(ngModel)]="category.title"
+                       name="title"
+                       autofocus
+                       placeholder="Ingrese el título de la categoría"
+                       required>
+                <mat-hint>Nombre descriptivo para la categoría</mat-hint>
+              </mat-form-field>
+            </div>
+
+            <div class="form-row">
+              <mat-form-field class="form-field" appearance="outline">
+                <textarea matInput 
+                          [(ngModel)]="category.description"
+                          name="description"
+                          rows="6" 
+                          placeholder="Ingrese una descripción de la categoría"
+                          required></textarea>
+                <mat-hint>Descripción completa de la categoría y su propósito</mat-hint>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end" class="action-buttons">
+      
+      <button mat-raised-button color="primary" type="button" (click)="saveCategory()">
+        <mat-icon>save</mat-icon>
+        Guardar Categoría
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,0 +1,171 @@
+<div class="questions-container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <mat-card class="header-card">
+      <mat-card-header>
+        <mat-card-title class="main-title">
+          <mat-icon class="title-icon">quiz</mat-icon>
+          Preguntas de {{ title }}
+        </mat-card-title>
+        <mat-card-subtitle>
+          Gestiona las preguntas de este examen
+        </mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="loading" class="loading-container">
+    <mat-card class="loading-card">
+      <mat-card-content class="text-center">
+        <mat-spinner diameter="50"></mat-spinner>
+        <p class="loading-text">Cargando preguntas...</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!loading" class="content-wrapper">
+    
+    <!-- Add Question Button -->
+    <div class="action-section">
+      <button
+        mat-raised-button
+        color="primary"
+        class="add-question-btn"
+        [routerLink]="'/admin/add-question/'+examId+'/'+title">
+        <mat-icon>add</mat-icon>
+        Agregar pregunta
+      </button>
+    </div>
+    
+    <!-- Empty State -->
+    <div *ngIf="questions.length === 0" class="empty-state">
+      <mat-card class="empty-card">
+        <mat-card-content class="text-center">
+          <mat-icon class="empty-icon">help_outline</mat-icon>
+          <h3>No hay preguntas disponibles</h3>
+          <p>Comienza agregando la primera pregunta para este examen.</p>
+          <button
+            mat-raised-button
+            color="primary"
+            [routerLink]="'/admin/add-question/'+examId">
+            <mat-icon>add</mat-icon>
+            Crear primera pregunta
+          </button>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    
+    <!-- Questions List -->
+    <div class="questions-grid" *ngIf="questions.length > 0">
+      <mat-card *ngFor="let p of questions; let i = index" class="question-card" elevation="2">
+        
+        <!-- Question Header -->
+        <mat-card-header class="question-header">
+          <div mat-card-avatar class="question-number">
+            {{ i + 1 }}
+          </div>
+          <mat-card-title class="question-title">
+            Pregunta {{ i + 1 }}
+          </mat-card-title>
+          <mat-card-subtitle>
+            <mat-chip-set>
+              <mat-chip color="primary" selected>
+                <mat-icon matChipAvatar>quiz</mat-icon>
+                Opción múltiple
+              </mat-chip>
+            </mat-chip-set>
+          </mat-card-subtitle>
+        </mat-card-header>
+
+        <!-- Question Content -->
+        <mat-card-content class="question-content">
+          
+          <!-- Question Text -->
+          <div class="question-text">
+            <mat-icon class="content-icon">help_outline</mat-icon>
+            <span [innerHTML]="p.content"></span>
+          </div>
+
+          <!-- Options Grid -->
+          <div class="options-container">
+            <h4 class="options-title">
+              <mat-icon>list</mat-icon>
+              Opciones de respuesta
+            </h4>
+            
+            <div class="options-grid">
+              <div class="option-item" [class.correct-answer]="p.answer === p.option1">
+                <div class="option-label">
+                  <mat-icon [class.correct-icon]="p.answer === p.option1">
+                    {{ p.answer === p.option1 ? 'check_circle' : 'radio_button_unchecked' }}
+                  </mat-icon>
+                  <span class="option-number">A)</span>
+                </div>
+                <span class="option-text">{{ p.option1 }}</span>
+              </div>
+
+              <div class="option-item" [class.correct-answer]="p.answer === p.option2">
+                <div class="option-label">
+                  <mat-icon [class.correct-icon]="p.answer === p.option2">
+                    {{ p.answer === p.option2 ? 'check_circle' : 'radio_button_unchecked' }}
+                  </mat-icon>
+                  <span class="option-number">B)</span>
+                </div>
+                <span class="option-text">{{ p.option2 }}</span>
+              </div>
+
+              <div class="option-item" [class.correct-answer]="p.answer === p.option3">
+                <div class="option-label">
+                  <mat-icon [class.correct-icon]="p.answer === p.option3">
+                    {{ p.answer === p.option3 ? 'check_circle' : 'radio_button_unchecked' }}
+                  </mat-icon>
+                  <span class="option-number">C)</span>
+                </div>
+                <span class="option-text">{{ p.option3 }}</span>
+              </div>
+
+              <div class="option-item" [class.correct-answer]="p.answer === p.option4">
+                <div class="option-label">
+                  <mat-icon [class.correct-icon]="p.answer === p.option4">
+                    {{ p.answer === p.option4 ? 'check_circle' : 'radio_button_unchecked' }}
+                  </mat-icon>
+                  <span class="option-number">D)</span>
+                </div>
+                <span class="option-text">{{ p.option4 }}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Correct Answer Highlight -->
+          <mat-divider class="answer-divider"></mat-divider>
+          <div class="correct-answer-section">
+            <mat-icon class="correct-icon">verified</mat-icon>
+            <span class="correct-text">
+              <strong>Respuesta correcta:</strong> {{ p.answer }}
+            </span>
+          </div>
+        </mat-card-content>
+
+        <!-- Question Actions -->
+        <mat-card-actions class="question-actions">
+          <button 
+            mat-button 
+            color="primary"
+            [routerLink]="'/admin/pregunta/'+p.questionId">
+            <mat-icon>edit</mat-icon>
+            Editar
+          </button>
+          <button 
+            mat-button 
+            color="warn"
+            (click)="eliminarPregunta(p.questionId)">
+            <mat-icon>delete</mat-icon>
+            Eliminar
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

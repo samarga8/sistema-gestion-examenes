@@ -1,0 +1,42 @@
+<mat-card>
+  <mat-action-list>
+    <div mat-subheader>
+      Menú Principal
+    </div>
+    
+    <button routerLink="/admin" mat-list-item routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>home</mat-icon>
+      <span class="mdc-list-item__primary-text">Inicio</span>
+    </button>
+    
+    <button mat-list-item routerLink="/admin/profile" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>account_circle</mat-icon>
+      <span class="mdc-list-item__primary-text">Perfil</span>
+    </button>
+    
+    <button mat-list-item routerLink="/admin/ViewCategories" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>category</mat-icon>
+      <span class="mdc-list-item__primary-text">Categorías</span>
+    </button>
+    
+    <button mat-list-item routerLink="/admin/AddCategory" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>add</mat-icon>
+      <span class="mdc-list-item__primary-text">Agregar categoría</span>
+    </button>
+
+    <button mat-list-item routerLink="/admin/ViewExams" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>quiz</mat-icon>
+      <span class="mdc-list-item__primary-text">Examenes</span>
+    </button>
+
+    <button mat-list-item routerLink="/admin/add-exam" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>add</mat-icon>
+      <span class="mdc-list-item__primary-text">Agregar examen</span>
+    </button>
+
+    <button mat-list-item routerLink="/admin" routerLinkActive="mdc-list-item--activated">
+      <mat-icon mat-list-icon>logout</mat-icon>
+      <span class="mdc-list-item__primary-text">Salir</span>
+    </button>
+  </mat-action-list>
+</mat-card>

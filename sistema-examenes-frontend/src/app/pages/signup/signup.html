@@ -1,0 +1,155 @@
+<div class="signup-container">
+  <mat-card class="signup-card">
+    
+
+    <mat-card-content>
+      <div class="signup-image-section">
+        <img src="assets/form_image.webp" alt="Registro" class="signup-image">
+      </div>
+
+      <form (ngSubmit)="formSubmit()" class="signup-form">
+        <div class="form-section">
+          <h3 class="form-title">
+            <mat-icon>account_circle</mat-icon>
+            Información de Acceso
+          </h3>
+
+          <div class="form-fields">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Nombre de usuario</mat-label>
+              <input 
+                matInput 
+                required 
+                [(ngModel)]="user.username" 
+                name="username" 
+                type="text"
+                placeholder="Ingrese su nombre de usuario"
+                autocomplete="username">
+              <mat-icon matSuffix>person</mat-icon>
+              <mat-hint>El nombre de usuario debe ser único</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Contraseña</mat-label>
+              <input 
+                matInput 
+                required 
+                [(ngModel)]="user.password" 
+                name="password" 
+                type="password"
+                placeholder="Ingrese su contraseña"
+                autocomplete="new-password">
+              <mat-icon matSuffix>lock</mat-icon>
+              <mat-hint>Use una contraseña segura</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="form-title">
+            <mat-icon>badge</mat-icon>
+            Información Personal
+          </h3>
+
+          <div class="form-fields">
+            <div class="form-row">
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Nombre</mat-label>
+                <input 
+                  matInput 
+                  required 
+                  [(ngModel)]="user.name" 
+                  name="name" 
+                  type="text"
+                  placeholder="Ingrese su nombre"
+                  autocomplete="given-name">
+                <mat-icon matSuffix>person_outline</mat-icon>
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="half-width">
+                <mat-label>Apellido</mat-label>
+                <input 
+                  matInput 
+                  required 
+                  [(ngModel)]="user.lastName" 
+                  name="lastName" 
+                  type="text"
+                  placeholder="Ingrese sus apellidos"
+                  autocomplete="family-name">
+                <mat-icon matSuffix>person_outline</mat-icon>
+              </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Correo electrónico</mat-label>
+              <input 
+                matInput 
+                required 
+                [(ngModel)]="user.email" 
+                name="email" 
+                type="email"
+                placeholder="Ingrese su correo electrónico"
+                autocomplete="email">
+              <mat-icon matSuffix>email</mat-icon>
+             
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Número de teléfono</mat-label>
+              <input 
+                matInput 
+                [(ngModel)]="user.phone" 
+                name="phone" 
+                type="tel"
+                placeholder="Ingrese su número de teléfono"
+                autocomplete="tel">
+              <mat-icon matSuffix>phone</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h3 class="form-title">
+            <mat-icon>admin_panel_settings</mat-icon>
+            Configuración de Cuenta
+          </h3>
+
+          <div class="form-fields">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Tipo de usuario</mat-label>
+              <mat-select [(ngModel)]="user.role" name="role" required>
+                <mat-option value="ADMIN">
+                  <mat-icon>admin_panel_settings</mat-icon>
+                  Administrador
+                </mat-option>
+                <mat-option value="STUDENT">
+                  <mat-icon>school</mat-icon>
+                  Estudiante
+                </mat-option>
+              </mat-select>
+              <mat-icon matSuffix>assignment_ind</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <mat-card-actions class="signup-actions">
+          <button type="submit" mat-raised-button color="primary" class="signup-button">
+            <mat-icon>person_add</mat-icon>
+            Registrarse
+          </button>
+          <button type="reset" mat-raised-button color="warn" class="clear-button">
+            <mat-icon>clear</mat-icon>
+            Limpiar
+          </button>
+        </mat-card-actions>
+      </form>
+
+      <div class="signup-footer">
+        <p class="help-text">
+          <mat-icon>info_outline</mat-icon>
+          ¿Ya tienes cuenta? <a href="/login" class="login-link">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

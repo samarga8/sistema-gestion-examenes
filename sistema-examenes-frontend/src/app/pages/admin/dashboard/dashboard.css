@@ -1,0 +1,93 @@
+.bootstrap-wrapper {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.container-fluid {
+  width: 100% !important;
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+}
+
+.row {
+  width: 100%;
+  height: 100vh;
+  margin: 0 !important;
+  padding: 0;
+}
+
+.col-md-2 {
+  height: 100vh;
+  padding: 0;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+}
+
+.col-md-10 {
+  height: 100vh;
+  padding: 0;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+/* Asegurar que no haya espacios en blanco */
+* {
+  box-sizing: border-box;
+}
+
+/* Eliminar márgenes y padding por defecto del body y html si es necesario */
+:host {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .col-md-2 {
+    position: fixed;
+    left: -250px;
+    width: 250px;
+    z-index: 1000;
+    transition: left 0.3s ease;
+  }
+  
+  .col-md-2.show {
+    left: 0;
+  }
+  
+  .col-md-10 {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* Scroll personalizado para mejor apariencia */
+.col-md-2::-webkit-scrollbar,
+.col-md-10::-webkit-scrollbar {
+  width: 6px;
+}
+
+.col-md-2::-webkit-scrollbar-track,
+.col-md-10::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.col-md-2::-webkit-scrollbar-thumb,
+.col-md-10::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.col-md-2::-webkit-scrollbar-thumb:hover,
+.col-md-10::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}

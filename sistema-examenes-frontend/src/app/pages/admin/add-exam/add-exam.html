@@ -1,0 +1,94 @@
+<div class="exam-container">
+    <mat-card class="exam-card">
+        <mat-card-header class="card-header">
+            <mat-card-title class="main-title">
+                <mat-icon class="title-icon">quiz</mat-icon>
+                Agregar Nuevo Examen
+            </mat-card-title>
+            <mat-card-subtitle class="main-subtitle">
+                Crea un nuevo examen para el sistema de evaluación
+            </mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="card-content">
+            <div class="exam-section">
+                <form #examForm="ngForm" (ngSubmit)="saveExam()" class="exam-form">
+
+                    <!-- Título -->
+                    <div class="form-row">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Título del Examen</mat-label>
+                            <input [(ngModel)]="examenData.title" name="title" type="text"
+                                placeholder="Digite el título del examen" matInput />
+                            <mat-icon matSuffix>title</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Descripción -->
+                    <div class="form-row">
+                        <mat-form-field class="full-width" appearance="outline">
+                            <mat-label>Descripción</mat-label>
+                            <textarea [(ngModel)]="examenData.description" name="description"
+                                placeholder="Digite la descripción del examen" matInput rows="4">
+                            </textarea>
+                            <mat-icon matSuffix>description</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Puntos y preguntas -->
+                    <div class="form-row two-columns">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Puntos Máximos</mat-label>
+                            <input [(ngModel)]="examenData.pointMax" name="pointMax" type="number" placeholder="Ej: 100"
+                                matInput />
+                            <mat-icon matSuffix>star</mat-icon>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline">
+                            <mat-label>Número de Preguntas</mat-label>
+                            <input [(ngModel)]="examenData.numberQuestions" name="numberQuestions" type="number"
+                                placeholder="Ej: 20" matInput />
+                            <mat-icon matSuffix>help_outline</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Estado -->
+                    <div class="form-row">
+                        <div class="toggle-container">
+                            <mat-slide-toggle [(ngModel)]="examenData.active" name="active" color="primary"
+                                class="exam-toggle">
+                                <div class="toggle-content">
+                                    <mat-icon>{{ examenData.active ? 'visibility' : 'visibility_off' }}</mat-icon>
+                                    <span>{{ examenData.active ? 'Examen Activo' : 'Examen Inactivo' }}</span>
+                                </div>
+                            </mat-slide-toggle>
+                        </div>
+                    </div>
+
+                    <!-- Categoría -->
+                    <div class="form-row">
+                        <mat-form-field appearance="fill" class="full-width mt20 w100">
+                            <mat-label>Categorías</mat-label>
+                            <mat-select name="category" [(ngModel)]="examenData.category">
+                                <mat-option *ngFor="let c of categorias" [value]="c">
+                                    {{ c.title }}
+                                </mat-option>
+                            </mat-select>
+
+                            <mat-icon matSuffix>category</mat-icon>
+                        </mat-form-field>
+                    </div>
+
+                    <!-- Botón -->
+                    <div class="action-buttons">
+                        <button type="submit" mat-raised-button color="primary" class="save-btn">
+                            <mat-icon>save</mat-icon>
+                            Guardar Examen
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
