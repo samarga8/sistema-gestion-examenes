@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.beans.Transient;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -22,6 +23,7 @@ public class CategoryServiceImpl implements ICategoryService {
     private static ModelMapper modelMapper = new ModelMapper();
 
 
+
     @Override
     public void saveCategory(CategoryRequestDTO categoryDTO) {
 
@@ -33,7 +35,7 @@ public class CategoryServiceImpl implements ICategoryService {
     public Category updateCategory(CategoryRequestDTO categoryDTO,long id) {
         Optional<Category> category = categoryRepository.findById(id);
         if (category.isPresent()){
-            category.get().setCategoryId(id);
+            category.get().setId(id);
             category.get().setTitle(categoryDTO.getTitle());
             category.get().setDescription(categoryDTO.getDescription());
 

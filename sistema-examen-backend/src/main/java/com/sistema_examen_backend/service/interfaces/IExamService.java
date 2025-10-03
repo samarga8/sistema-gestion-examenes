@@ -1,18 +1,21 @@
 package com.sistema_examen_backend.service.interfaces;
 
+import com.sistema_examen_backend.controller.dto.ExamRequestDTO;
+import com.sistema_examen_backend.controller.dto.ExamResponseDTO;
+import com.sistema_examen_backend.controller.dto.ExamUpdateRequestDTO;
 import com.sistema_examen_backend.persistence.entity.Exam;
 
 import java.util.Set;
 
 public interface IExamService {
 
-    Exam createExam(Exam exam);
+    Exam createExam(ExamRequestDTO exam);
 
-    Exam updateExam(Exam exam);
+    ExamResponseDTO updateExam(ExamUpdateRequestDTO exam);
 
-    Set<Exam> getAllExams();
+    Set<ExamResponseDTO> getAllExams();
 
-    Exam getExam(Long examId);
+    ExamResponseDTO getExam(Long examId);
 
     void deleteExam(Long examId);
 }

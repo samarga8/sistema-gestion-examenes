@@ -4,6 +4,7 @@ import com.sistema_examen_backend.persistence.entity.Exam;
 import com.sistema_examen_backend.persistence.entity.Question;
 import com.sistema_examen_backend.persistence.repository.QuestionRepository;
 import com.sistema_examen_backend.service.interfaces.IQuestionService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,8 +37,9 @@ public class QuestionServiceImpl implements IQuestionService {
     }
 
     @Override
-    public Set<Question> getExamQuestions(Exam exam) {
-        return questionRepository.findByExam(exam);
+    @Transactional
+    public Set<Question> getExamQuestions(Long exam) {
+        return questionRepository.findByExam_ExamId(exam);
     }
 
     @Override

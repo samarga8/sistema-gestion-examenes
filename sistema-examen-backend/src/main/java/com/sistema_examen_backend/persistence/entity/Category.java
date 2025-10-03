@@ -3,6 +3,7 @@ package com.sistema_examen_backend.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.beans.Transient;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -12,22 +13,23 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long categoryId;
+    private Long id;
 
     private String title;
 
     private String description;
 
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Exam> exams = new LinkedHashSet<>();
 
-    public Long getCategoryId() {
-        return categoryId;
+    public Long getId() {
+        return id;
     }
 
-    public void setCategoryId(Long categoryId) {
-        this.categoryId = categoryId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

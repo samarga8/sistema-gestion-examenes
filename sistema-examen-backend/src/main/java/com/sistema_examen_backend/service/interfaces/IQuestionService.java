@@ -15,7 +15,7 @@ public interface IQuestionService {
 
     Question getQuestion(Long questionId);
 
-    Set<Question> getExamQuestions(Exam exam);
+    Set<Question> getExamQuestions(Long exam);
 
     void deleteQuestion(Long questionId);
 }

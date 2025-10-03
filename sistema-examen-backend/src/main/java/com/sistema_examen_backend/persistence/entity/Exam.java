@@ -4,6 +4,7 @@ package com.sistema_examen_backend.persistence.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.beans.Transient;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -20,15 +21,17 @@ public class Exam {
     private String description;
 
     @Column(name = "point_max")
-    private String pointMax;
+    private Integer pointMax;
 
     @Column(name = "number_questions")
-    private String numberQuestions;
+    private Integer numberQuestions;
 
     private Boolean active = false;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
     private Category category;
+
 
     @OneToMany(mappedBy = "exam",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
@@ -58,19 +61,19 @@ public class Exam {
         this.description = description;
     }
 
-    public String getPointMax() {
+    public Integer getPointMax() {
         return pointMax;
     }
 
-    public void setPointMax(String pointMax) {
+    public void setPointMax(Integer pointMax) {
         this.pointMax = pointMax;
     }
 
-    public String getNumberQuestions() {
+    public Integer getNumberQuestions() {
         return numberQuestions;
     }
 
-    public void setNumberQuestions(String numberQuestions) {
+    public void setNumberQuestions(Integer numberQuestions) {
         this.numberQuestions = numberQuestions;
     }
 
@@ -96,5 +99,19 @@ public class Exam {
 
     public void setQuestions(Set<Question> questions) {
         this.questions = questions;
+    }
+
+    @Override
+    public String toString() {
+        return "Exam{" +
+                "examId=" + examId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", pointMax=" + pointMax +
+                ", numberQuestions=" + numberQuestions +
+                ", active=" + active +
+                ", category=" + category +
+                ", questions=" + questions +
+                '}';
     }
 }

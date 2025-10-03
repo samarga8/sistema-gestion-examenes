@@ -36,22 +36,23 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String username = null;
         String jwtToken = null;
 
-        // Extrae el token del encabezado
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
 
             try {
                 username = this.jwtUtil.extractUsername(jwtToken);
-            }  catch (Exception e) {
-                logger.error("Error al extraer el nombre de usuario del token", e);
+            } catch (Exception e) {
+                logger.error("❌ Error al extraer el nombre de usuario del token", e);
             }
         } else {
-            logger.warn("Token inválido, no empieza con 'Bearer '");
+            logger.warn("⚠️ Token inválido o no empieza con 'Bearer '");
         }
 
-        // Validar token y configurar seguridad
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
+
             if (this.jwtUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
@@ -59,11 +60,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             } else {
-                System.out.println("El token no es valido");
+                System.out.println("❌ El token no es válido");
             }
         }
 
-        // Continuar con la cadena de filtros
         filterChain.doFilter(request, response);
     }
+
 }

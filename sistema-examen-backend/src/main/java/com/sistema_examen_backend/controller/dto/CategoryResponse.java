@@ -3,16 +3,16 @@ package com.sistema_examen_backend.controller.dto;
 
 public class CategoryResponse {
 
-    private Long id;
+    private Long categoryId;
     private String title;
     private String description;
 
-    public Long getId() {
-        return id;
+    public Long getCategoryId() {
+        return categoryId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 
     public String getTitle() {
